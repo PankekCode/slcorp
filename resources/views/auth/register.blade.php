@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LOGIN</title>
+    <title>REGISTER</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -37,10 +37,7 @@
         .login-container {
             width: 500px;
             background: #F7F7F7;
-            margin-right: 250px;
-            margin-left: auto;
-            margin-top: 210px;
-            margin-bottom: auto;
+            justify-content: center;
             padding: 30px;
             border-radius: 10px;
             border: 0px solid #000;
@@ -97,17 +94,22 @@
 <body>
 
     <div class="background-container">
-    <div><img src="{{ asset('images/bglogin.png') }}" alt="bgimage"></div>
     <div class="login-container">
         <h4 class="fw-bold mb-4 text-center"></h4>
         <form action="/login" method="POST">
             @csrf
 
+            <label>Nama Lengkap</label>
+            <input type="nama" name="nama" class="form-control mb-3" placeholder="Nama" required />
+
             <label>Email</label>
             <input type="email" name="email" class="form-control mb-3" placeholder="Email" required />
 
             <label>Password</label>
-            <input type="password" name="password" class="form-control mb-1" placeholder="Password" required />
+            <input type="password" name="password" class="form-control mb-3" placeholder="********" required />
+
+            <label>Konfirmasi Password</label>
+            <input type="password" name="password" class="form-control mb-1" placeholder="********" required />
 
             <div class="small-text">
                 <a href="#">Lupa Password ?</a>
@@ -124,7 +126,7 @@
         </button>
 
         <p class="text-center mt-3 small-text">
-            User Baru ? <a href="/register">Daftar</a>
+            Kamu sudah memiliki akun ? <a href="/login">Masuk</a>
         </p>
 
     </div>

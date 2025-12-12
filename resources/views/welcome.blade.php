@@ -125,7 +125,6 @@
             padding: 12px 30px;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
             font-weight: bold;
         }
         .brand {

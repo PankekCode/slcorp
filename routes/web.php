@@ -9,3 +9,5 @@ Route::get('/', function () {
     return view('welcome');});
 
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
+
+Route::get('/register', [AuthController::class, 'registerPage'])->name('register');
