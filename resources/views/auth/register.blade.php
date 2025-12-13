@@ -96,11 +96,14 @@
     <div class="background-container">
     <div class="login-container">
         <h4 class="fw-bold mb-4 text-center"></h4>
-        <form action="/login" method="POST">
+        <form action="{{ route('register') }}" method="POST">
             @csrf
 
             <label>Nama Lengkap</label>
-            <input type="nama" name="nama" class="form-control mb-3" placeholder="Nama" required />
+            <input type="text" name="name" class="form-control mb-3" placeholder="Nama" value="{{ old('name') }}" required />
+            @error('name')
+                <div class="text-danger small">{{ $message }}</div>
+            @enderror
 
             <label>Email</label>
             <input type="email" name="email" class="form-control mb-3" placeholder="Email" required />
@@ -109,13 +112,13 @@
             <input type="password" name="password" class="form-control mb-3" placeholder="********" required />
 
             <label>Konfirmasi Password</label>
-            <input type="password" name="password" class="form-control mb-1" placeholder="********" required />
+            <input type="password" name="password_confirmation" class="form-control mb-1" placeholder="********" required />
 
             <div class="small-text">
                 <a href="#">Lupa Password ?</a>
             </div>
 
-            <button type="submit" class="btn-login mt-3">Masuk</button>
+            <button type="submit" class="btn-login mt-3">Daftar</button>
         </form>
 
         <div class="divider"></div>

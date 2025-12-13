@@ -100,7 +100,7 @@
     <div><img src="{{ asset('images/bglogin.png') }}" alt="bgimage"></div>
     <div class="login-container">
         <h4 class="fw-bold mb-4 text-center"></h4>
-        <form action="/login" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
 
             <label>Email</label>
