@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Lowongan</title>
 
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -126,6 +126,30 @@
             font-size: 13px;
         }
 
+        .job-icon {
+            margin-right: 15px;
+            border: 2px solid red;
+            padding-right: 90%;
+        }
+
+        .icon1 {
+            display: block;
+            width: 100px;
+            height: 100px;
+            border: 0px solid red;
+            margin-top: 20px;
+        }
+
+        .text1 {
+            margin-left: 130px;
+            margin-top: -105px;
+            border: 0px solid red;
+        }
+
+        .job-left {
+            border: 0px solid red;
+        }
+
     </style>
 </head>
 <body>
@@ -136,9 +160,9 @@
 
     <ul>
         <!-- ICON BISA DITAMBAHKAN DI SINI (contoh: <i class="bi bi-house"></i>) -->
-        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
         <li><a href="{{ route('datadiri') }}">Data Diri</a></li>
-        <li><a href="{{ route('lowongan') }}">Lowongan</a></li>
+        <li><a href="#" class="active">Lowongan</a></li>
         <li><a href="#">Pengumuman</a></li>
     </ul>
 
@@ -154,63 +178,71 @@
 <!-- MAIN CONTENT -->
 <div class="main-content">
 
-    <h4 class="fw-semibold mb-4">Dashboard</h4>
+    <h4 class="fw-semibold mb-4">Lowongan</h4>
 
-    <!-- TOP CARDS -->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card-custom">
-                <div class="user-info">
-                    <img src="{{ asset("images/profil.jpg") }}" alt="user">
-                    <div>
-                        <small>User</small>
-                        <h5 class="fw-semibold mb-1">Mahdan Al Samansyah</h5>
-                        <small>0812-6734-9921</small>
-                        <!-- DATA INI NANTI BISA DIGANTI DARI DATABASE -->
+    <div class="card-wrapper">
+
+        <!-- JOB ITEM -->
+        <div class="job-card">
+            <div class="job-left">
+                <div class="job-info">
+                    <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="barista" >
+                    <div class="text1">
+                    <h6>WE'RE HIRING – BARISTA</h6>
+                    <p>Pembukaan Lowongan Kerja SL Corp</p>
+                    <small>SL Corp membuka kesempatan bagi kamu yang bersemangat, ramah, dan memiliki ketertarikan di dunia F&B untuk bergabung sebagai Barista...</small>
                     </div>
                 </div>
             </div>
+            <button class="btn-more">SEE MORE</button>
         </div>
 
-        <div class="col-md-6">
-            <div class="card-custom">
-                <h6 class="fw-semibold">PENGUMUMAN</h6>
-                <div class="announcement-box mt-3">
-                    <div>
-                        <small>Tanggal</small><br>
-                        2026-01-03
-                    </div>
-                    <div>
-                        <small>Jam</small><br>
-                        10:20 WIB
+        <div class="job-card">
+            <div class="job-left">
+                <div class="job-info">
+                <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" alt="chef" height="100px">
+                <div class="text1">
+                    <h6>WE'RE HIRING – CHEF</h6>
+                    <p>Pembukaan Lowongan Kerja SL Corp</p>
+                    <small>SL Corp membuka lowongan untuk posisi Chef bagi individu yang memiliki passion di bidang kuliner...</small>
+                </div>
+                </div>
+            </div>
+            <button class="btn-more">SEE MORE</button>
+        </div>
+
+        <div class="job-card">
+            <div class="job-left">
+                <div class="job-info">
+                    <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1077/1077976.png" alt="gudang" height="100px">
+                    <div class="text1">
+                    <h6>WE'RE HIRING – HELPER GUDANG</h6>
+                    <p>Pembukaan Lowongan Kerja SL Corp</p>
+                    <small>SL Corp membuka lowongan untuk posisi Helper Gudang yang akan ditempatkan di Gudang SL Corp Purwokerto...</small>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- JOB LIST -->
-    <div class="card-custom mt-4">
-        <div class="job-card">
-            <div class="job-info">
-                <h6 class="fw-bold">WE'RE HIRING – BARISTA</h6>
-                <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
-                <small>SL Corp membuka kesempatan bagi kamu yang bersemangat, ramah, dan memiliki ketertarikan di dunia F&B...</small>
-            </div>
-            <a href="#" class="btn btn-sm">SEE MORE</a>
+            <button class="btn-more">SEE MORE</button>
         </div>
 
         <div class="job-card">
-            <div class="job-info">
-                <h6 class="fw-bold">WE'RE HIRING – CHEF</h6>
-                <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
-                <small>Lowongan untuk posisi Chef bagi individu yang memiliki passion di bidang kuliner...</small>
+            <div class="job-left">
+                <div class="job-info">
+                    <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="keuangan" height="100px">
+                    <div class="text1">
+                    <h6>WE'RE HIRING – KEUANGAN</h6>
+                    <p>Pembukaan Lowongan Kerja SL Corp</p>
+                    <small>SL Corp membuka lowongan untuk posisi Keuangan yang akan ditempatkan di SL Corp Purwokerto...</small>
+                    </div>
+                </div>
             </div>
-            <a href="#" class="btn btn-sm">SEE MORE</a>
+            <button class="btn-more">SEE MORE</button>
         </div>
+
     </div>
 
 </div>
 
 </body>
 </html>
+<!DOCTYPE html>

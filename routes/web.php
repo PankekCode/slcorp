@@ -20,3 +20,11 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
+
+Route::get('/datadiri', function () {
+    return view('datadiri');
+})->name('datadiri')->middleware('auth');
+
+Route::get('/lowongan', function () {
+    return view('lowongan');
+})->name('lowongan')->middleware('auth');
