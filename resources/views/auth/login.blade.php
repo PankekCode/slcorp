@@ -14,8 +14,8 @@
         }
 
         .background-container {
-            width: 1920px;
-            height: 957px;
+            width: 1440px;
+            height: auto;
             background-size: cover;
             background-position: center;
             display: flex;
@@ -37,9 +37,9 @@
         .login-container {
             width: 500px;
             background: #F7F7F7;
-            margin-right: 250px;
+            margin-right: 80px;
             margin-left: auto;
-            margin-top: 210px;
+            margin-top: 150px;
             margin-bottom: auto;
             padding: 30px;
             border-radius: 10px;
@@ -97,7 +97,7 @@
 <body>
 
     <div class="background-container">
-    <div><img src="{{ asset('images/bglogin.png') }}" alt="bgimage"></div>
+    <div><img src="{{ asset('images/bglogin.png') }}" alt="bgimage" height="742 px"></div>
     <div class="login-container">
         <h4 class="fw-bold mb-4 text-center"></h4>
         <form action="{{ route('login') }}" method="POST">
@@ -114,6 +114,14 @@
             </div>
 
             <button type="submit" class="btn-login mt-3">Masuk</button>
+
+            @if ($errors->any())
+                <ul class="px-4 py-2 bg-red-100">
+                    @foreach ($errors->all() as $error)
+                        <li class="text-danger small">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
         </form>
 
         <div class="divider"></div>

@@ -14,8 +14,8 @@
         }
 
         .background-container {
-            width: 1920px;
-            height: 957px;
+            width: 1440px;
+            height: auto;
             background-size: cover;
             background-position: center;
             display: flex;
@@ -38,9 +38,12 @@
             width: 500px;
             background: #F7F7F7;
             justify-content: center;
+            align-items: center;
             padding: 30px;
             border-radius: 10px;
             border: 0px solid #000;
+            margin-top: 70px;
+            margin-left: 120px;
         }
 
         .btn-login {
@@ -119,6 +122,15 @@
             </div>
 
             <button type="submit" class="btn-login mt-3">Daftar</button>
+
+             @if ($errors->any())
+                <ul class="px-4 py-2 bg-red-100">
+                    @foreach ($errors->all() as $error)
+                        <li class="text-danger small">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+            
         </form>
 
         <div class="divider"></div>

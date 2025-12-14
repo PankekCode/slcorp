@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationData;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AuthController extends Controller
@@ -19,9 +21,24 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function login(Request $request): void
+    public function login(Request $request)
     {
-        // proses validasi login
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        if (Auth::attempt($validated)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('dashboard');
+        }
+
+        throw ValidationException::withMessages([
+            'credentials' => 'Email atau Password anda salah'
+        ]);
+
+
     }
 
     public function register(Request $request)
