@@ -153,7 +153,7 @@
 
     <div class="sidebarkontenbawah">
         <ul>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="{{ route('faq') }}">FAQ</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="{{ route('welcome') }}">Log out</a></li>
         </ul>

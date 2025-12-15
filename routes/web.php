@@ -42,3 +42,7 @@ Route::get('/lowongan', function () {
 Route::get('/pengumuman', function () {
     return view('user.pengumuman');
 })->name('pengumuman')->middleware('auth');
+
+Route::get('/faq', function () {
+    return view('user.faq');
+})->name('faq')->middleware('auth');
