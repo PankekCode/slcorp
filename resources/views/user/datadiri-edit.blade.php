@@ -155,7 +155,11 @@
         <ul>
             <li><a href="{{ route('faq') }}">FAQ</a></li>
             <li><a href="#">Profile</a></li>
-            <li><a href="{{ route('welcome') }}">Log out</a></li>
+            <li>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+            Log out
+            </a>
+        </li>
         </ul>
     </div>
 </div>
@@ -325,6 +329,35 @@
 @endif
 
 </div>
+
+!-- MODAL LOGOUT -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Konfirmasi Logout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p>Apakah kamu yakin ingin keluar dari akun?</p>
+            </div>
+
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Batal
+                </button>
+
+                <!-- TOMBOL LOGOUT -->
+                <a href="{{ route('welcome') }}" class="btn btn-danger">
+                    Ya, Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 </html>

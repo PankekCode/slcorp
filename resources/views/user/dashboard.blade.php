@@ -170,13 +170,13 @@
 
     <div class="sidebarkontenbawah">
         <ul>
-            <li><a href="{{ route('faq') }}">FAQ</a></li>
+            <li><a href="#">FAQ</a></li>
             <li><a href="#">Profile</a></li>
             <li>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
-        Log out
-         </a>
-</li>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+            Log out
+            </a>
+        </li>
         </ul>
     </div>
 </div>
@@ -241,7 +241,7 @@
 
 </div>
 
-<!-- MODAL LOGOUT -->
+!-- MODAL LOGOUT -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4">
@@ -268,6 +268,7 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 </html>
