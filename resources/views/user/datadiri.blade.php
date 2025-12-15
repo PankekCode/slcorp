@@ -126,6 +126,15 @@
             font-size: 13px;
         }
 
+        .card-header-red {
+            background-color: #D32F2F;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px 10px 0 0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
     </style>
 </head>
 <body>
@@ -136,10 +145,10 @@
 
     <ul>
         <!-- ICON BISA DITAMBAHKAN DI SINI (contoh: <i class="bi bi-house"></i>) -->
-        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
         <li><a href="#" class="active">Data Diri</a></li>
         <li><a href="{{ route('lowongan') }}">Lowongan</a></li>
-        <li><a href="#">Pengumuman</a></li>
+        <li><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
     </ul>
 
     <div class="sidebarkontenbawah">
@@ -156,6 +165,44 @@
 
     <h4 class="fw-semibold mb-4">Data Diri</h4>
 
+@if ($profile)
+    <!-- CARD DATA DIRI -->
+    <div class="card-custom">
+        <div class="card-header-red">DATA DIRI ANDA</div>
+        <div class="p-4">
+            <p><strong>Nama Lengkap:</strong> {{ $profile->nama_lengkap }}</p>
+            <p><strong>NIK:</strong> {{ $profile->nik }}</p>
+            <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
+            <p><strong>No HP:</strong> {{ $profile->no_hp }}</p>
+            <p><strong>Tempat, Tgl Lahir:</strong>
+                {{ $profile->tempat_lahir }}, {{ $profile->tanggal_lahir }}
+            </p>
+            <p><strong>Jenis Kelamin:</strong> {{ $profile->jenis_kelamin }}</p>
+            <p><strong>Agama:</strong> {{ $profile->agama }}</p>
+            <p><strong>Alamat:</strong> {{ $profile->alamat }}</p>
+            <p><strong>Pendidikan:</strong> {{ $profile->pendidikan }}</p>
+
+            <div class="d-flex gap-2 mt-3">
+                <a href="{{ route('user.datadiri.edit') }}"
+                   class="btn btn-warning btn-sm">Edit</a>
+
+                <form action="{{ route('user.datadiri.delete') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger btn-sm"
+                            onclick="return confirm('Yakin hapus data diri?')">
+                        Hapus
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+@else
+
+<form action="{{ route('user.datadiri.store') }}" method="POST">
+    @csrf
+
+
     <!-- BIODATA -->
     <div class="card-custom">
         <div class="card-header-red">BIODATA</div>
@@ -163,45 +210,54 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label>NIK</label>
-                    <input type="text" class="form-control" placeholder="NIK">
+                    <input type="text" name="nik" class="form-control" placeholder="NIK"
+                    value="{{ old('nik', $profile->nik ?? '') }}">
+                    
                 </div>
                 <div class="col-md-6">
                     <label>Email</label>
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="email" class="form-control" value="{{ Auth::user()->email }}" readonly>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label>Nama Lengkap</label>
-                    <input type="text" class="form-control" placeholder="Nama Lengkap">
+                    <input type="text" name="nama_lengkap" class="form-control" value="{{ old('nama_lengkap', $profile->nama_lengkap ?? '') }}">
                 </div>
                 <div class="col-md-3">
                     <label>Tempat Lahir</label>
-                    <input type="text" class="form-control" placeholder="Tempat Lahir">
+                    <input type="text" name="tempat_lahir" class="form-control"
+                        value="{{ old('tempat_lahir', $profile->tempat_lahir ?? '') }}">
                 </div>
+
                 <div class="col-md-3">
                     <label>Tanggal Lahir</label>
-                    <input type="date" class="form-control">
+                    <input type="date" name="tanggal_lahir" class="form-control"
+                        value="{{ old('tanggal_lahir', $profile->tanggal_lahir ?? '') }}">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label>No. Handphone</label>
-                    <input type="text" class="form-control" placeholder="08xxxxxxxx">
+                    <input type="text" name="no_hp" class="form-control" value="{{ old('no_hp', $profile->no_hp ?? '') }}">
                 </div>
                 <div class="col-md-3">
                     <label>Jenis Kelamin</label>
-                    <select class="form-select">
-                        <option>Jenis Kelamin</option>
-                        <option>Laki-laki</option>
-                        <option>Perempuan</option>
+                    <select name="jenis_kelamin" class="form-select">
+                        <option value="">Jenis Kelamin</option>
+                        <option value="Laki-laki" {{ ($profile->jenis_kelamin ?? '') == 'Laki-laki' ? 'selected' : '' }}>
+                            Laki-laki
+                        </option>
+                        <option value="Perempuan" {{ ($profile->jenis_kelamin ?? '') == 'Perempuan' ? 'selected' : '' }}>
+                            Perempuan
+                        </option>
                     </select>
                 </div>
                 <div class="col-md-3">
                     <label>Agama</label>
-                    <select class="form-select">
+                    <select name="agama" class="form-select">
                         <option>Agama</option>
                         <option>Islam</option>
                         <option>Kristen</option>
@@ -215,7 +271,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <label>Alamat Domisili</label>
-                    <textarea class="form-control" rows="3"></textarea>
+                    <textarea name="alamat" class="form-control" rows="3">
+                        {{ old('alamat', $profile->alamat ?? '') }}
+                    </textarea>
                 </div>
             </div>
         </div>
@@ -225,29 +283,8 @@
     <div class="card-custom">
         <div class="card-header-red">RIWAYAT PENDIDIKAN</div>
         <div class="p-4">
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label>Asal Sekolah / Institusi</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-6">
-                    <label>Jenjang</label>
-                    <input type="text" class="form-control">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label>Jurusan</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="col-md-6">
-                    <label>Tanggal Lulus</label>
-                    <input type="date" class="form-control">
-                </div>
-            </div>
-
-            
+            <input type="text" name="pendidikan" class="form-control"
+            value="{{ old('pendidikan', $profile->pendidikan ?? '') }}">   
         </div>
 
         
@@ -277,6 +314,11 @@
                     <input type="date" class="form-control">
                 </div>
             </div>
+        <button type="submit" class="btn btn-danger mt-3">
+        Simpan Data Diri
+        </button>
+</form>
+@endif
 
 </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Lowongan</title>
 
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -97,11 +97,31 @@
             gap: 20px;
         }
 
+        .announcement-card {
+            display: flex;
+            gap: 20px;
+            background: #D32F2F;
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
         .announcement-box div {
             border: 1px solid #ddd;
             border-radius: 10px;
             padding: 10px 15px;
             font-size: 14px;
+        }
+
+        .gambar {
+            width: 120px;
+            height: 120px;
+            margin-top: auto;
+            border: 0px solid red;
+        }
+
+        .announcement-content h6, p, span {
+            color: #fff;
         }
 
         /* JOB CARD */
@@ -126,6 +146,30 @@
             font-size: 13px;
         }
 
+        .job-icon {
+            margin-right: 15px;
+            border: 2px solid red;
+            padding-right: 90%;
+        }
+
+        .icon1 {
+            display: block;
+            width: 100px;
+            height: 100px;
+            border: 0px solid red;
+            margin-top: 20px;
+        }
+
+        .text1 {
+            margin-left: 130px;
+            margin-top: -105px;
+            border: 0px solid red;
+        }
+
+        .job-left {
+            border: 0px solid red;
+        }
+
     </style>
 </head>
 <body>
@@ -135,11 +179,11 @@
     <div class="logo">SL INDONESIA</div>
 
     <ul>
-        <!-- ICON BISA DITAMBAHKAN DI SINI (contoh: <i class="bi bi-house"></i>) -->
-        <li><a href="#" class="active">Dashboard</a></li>
-        <li><a href="{{ route('datadiri') }}">Data Diri</a></li>
+        <!-- ICON BISA DITAMBAHKAN DI SINI -->
+        <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ route('user.datadiri') }}">Data Diri</a></li>
         <li><a href="{{ route('lowongan') }}">Lowongan</a></li>
-        <li><a href="#">Pengumuman</a></li>
+        <li><a href="#" class="active">Pengumuman</a></li>
     </ul>
 
     <div class="sidebarkontenbawah">
@@ -154,59 +198,32 @@
 <!-- MAIN CONTENT -->
 <div class="main-content">
 
-    <h4 class="fw-semibold mb-4">Dashboard</h4>
+    <h4 class="fw-semibold mb-4">Pengumuman</h4>
 
-    <!-- TOP CARDS -->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card-custom">
-                <div class="user-info">
-                    <img src="{{ asset("images/profil.jpg") }}" alt="user">
-                    <div>
-                        <small>User</small>
-                        <h5 class="fw-semibold mb-1">Mahdan Al Samansyah</h5>
-                        <small>0812-6734-9921</small>
-                        <!-- DATA INI NANTI BISA DIGANTI DARI DATABASE -->
-                    </div>
-                </div>
-            </div>
+    <!-- ITEM -->
+    <div class="announcement-card">
+        <div>
+            <img class="gambar" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="pengumuman">
         </div>
-
-        <div class="col-md-6">
-            <div class="card-custom">
-                <h6 class="fw-semibold">PENGUMUMAN</h6>
-                <div class="announcement-box mt-3">
-                    <div>
-                        <small>Tanggal</small><br>
-                        2026-01-03
-                    </div>
-                    <div>
-                        <small>Jam</small><br>
-                        10:20 WIB
-                    </div>
-                </div>
+        <div class="announcement-content">
+            <h6>Pengumuman Lulus Seleksi Wawancara Seleksi Penerimaan Karyawan Divisi Marketing Penempatan Di Kantor Pusat PT SL Indonesia, Purwokerto Tahun 2025</h6>
+            <div class="announcement-meta mb-1">
+                <span>13/03/2025</span>
             </div>
+            <p>Diberitahukan kepada peserta Seleksi Penerimaan Petugas Ticketing Penempatan Wilayah PT Kereta Commuter Indonesia Tahun 2025, yang namanya tercantum di bawah ini dinyatakan lulus seleksi, selanjutnya...</p>
         </div>
     </div>
 
-    <!-- JOB LIST -->
-    <div class="card-custom mt-4">
-        <div class="job-card">
-            <div class="job-info">
-                <h6 class="fw-bold">WE'RE HIRING – BARISTA</h6>
-                <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
-                <small>SL Corp membuka kesempatan bagi kamu yang bersemangat, ramah, dan memiliki ketertarikan di dunia F&B...</small>
-            </div>
-            <a href="#" class="btn btn-sm">SEE MORE</a>
+    <div class="announcement-card">
+        <div>
+            <img class="gambar" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="pengumuman">
         </div>
-
-        <div class="job-card">
-            <div class="job-info">
-                <h6 class="fw-bold">WE'RE HIRING – CHEF</h6>
-                <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
-                <small>Lowongan untuk posisi Chef bagi individu yang memiliki passion di bidang kuliner...</small>
+        <div class="announcement-content">
+            <h6>Pengumuman Lulus Seleksi Wawancara Seleksi Penerimaan Karyawan Divisi Finance Penempatan Di Kantor Pusat PT SL Indonesia, Purwokerto Tahun 2025</h6>
+            <div class="announcement-meta mb-1">
+                <span>12/03/2025</span>
             </div>
-            <a href="#" class="btn btn-sm">SEE MORE</a>
+            <p>Diberitahukan kepada peserta Seleksi Penerimaan Petugas Ticketing Penempatan Wilayah PT Kereta Commuter Indonesia Tahun 2025, yang namanya tercantum di bawah ini dinyatakan lulus seleksi, selanjutnya...</p>
         </div>
     </div>
 

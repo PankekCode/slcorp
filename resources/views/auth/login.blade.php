@@ -103,6 +103,10 @@
         <form action="{{ route('login') }}" method="POST">
             @csrf
 
+            @if (session('error'))
+                <div class="alert alert-warning">{{ session('error') }}</div>
+            @endif
+
             <label>Email</label>
             <input type="email" name="email" class="form-control mb-3" placeholder="Email" required />
 

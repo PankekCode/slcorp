@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #E5E5E5;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: #FFFFFF;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 25px 20px;
+        }
+
+        .sidebar .logo {
+            font-weight: 700;
+            font-size: 22px;
+            margin-bottom: 40px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            border: 0px solid red;
+        }
+
+        .sidebar ul li a.active,
+        .sidebar ul li a:hover {
+            background-color: #D32F2F;
+            color: #fff;
+        }
+
+        .sidebarkontenbawah {
+            margin-top: 250px;
+            border: 0px solid red;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        .card-custom {
+            width: 500px;
+            height: 150px;
+            border: 0px solid red;
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            gap: 200px;
+        }
+
+        .card-custom-kanan {
+            width: 500px;
+            height: 150px;
+            border: 0px solid red;
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            margin-left: -100px;
+        }
+
+        .card-custom-content {
+            width: 1200px;
+            border: 0px solid red;
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* USER INFO */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* ANNOUNCEMENT */
+        .announcement-box {
+            display: flex;
+            gap: 20px;
+        }
+
+        .announcement-box div {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+
+        /* JOB CARD */
+        .job-card {
+            background: linear-gradient(90deg, #D32F2F, #8E1E1E);
+            color: #fff;
+            border-radius: 18px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .job-card .job-info {
+            max-width: 75%;
+        }
+
+        .job-card .btn {
+            background: #E5E5E5;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="logo">SL INDONESIA</div>
+
+    <ul>
+        <!-- ICON BISA DITAMBAHKAN DI SINI (contoh: <i class="bi bi-house"></i>) -->
+        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="{{ route('user.datadiri') }}">Data Diri</a></li>
+        <li><a href="{{ route('lowongan') }}">Lowongan</a></li>
+        <li><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
+    </ul>
+
+    <div class="sidebarkontenbawah">
+        <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="{{ route('welcome') }}">Log out</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+    <h4 class="fw-semibold mb-4">Dashboard</h4>
+
+    <!-- TOP CARDS -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-custom">
+                <div class="user-info">
+                    <img src="{{ asset("images/profil.jpg") }}" alt="user">
+                    <div>
+                        <small>User</small>
+                        <h5>{{ $user->name }}</h5>
+                        <small>{{ $user->email }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card-custom-kanan">
+                <h6 class="fw-semibold">PENGUMUMAN</h6>
+                <div class="announcement-box mt-3">
+                    <div>
+                        <small>Tanggal</small><br>
+                        2026-01-03
+                    </div>
+                    <div>
+                        <small>Jam</small><br>
+                        10:20 WIB
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JOB LIST -->
+    <div class="card-custom-content">
+        <div class="job-card">
+            <div class="job-info">
+                <h6 class="fw-bold">WE'RE HIRING – BARISTA</h6>
+                <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
+                <small>SL Corp membuka kesempatan bagi kamu yang bersemangat, ramah, dan memiliki ketertarikan di dunia F&B...</small>
+            </div>
+            <a href="#" class="btn btn-sm">SEE MORE</a>
+        </div>
+
+        <div class="job-card">
+            <div class="job-info">
+                <h6 class="fw-bold">WE'RE HIRING – CHEF</h6>
+                <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
+                <small>Lowongan untuk posisi Chef bagi individu yang memiliki passion di bidang kuliner...</small>
+            </div>
+            <a href="#" class="btn btn-sm">SEE MORE</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

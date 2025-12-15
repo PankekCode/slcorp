@@ -160,10 +160,10 @@
 
     <ul>
         <!-- ICON BISA DITAMBAHKAN DI SINI (contoh: <i class="bi bi-house"></i>) -->
-        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-        <li><a href="{{ route('datadiri') }}">Data Diri</a></li>
+        <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ route('user.datadiri') }}">Data Diri</a></li>
         <li><a href="#" class="active">Lowongan</a></li>
-        <li><a href="#">Pengumuman</a></li>
+        <li><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
     </ul>
 
     <div class="sidebarkontenbawah">
