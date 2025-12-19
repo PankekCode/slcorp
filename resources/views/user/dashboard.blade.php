@@ -171,7 +171,7 @@
     <div class="sidebarkontenbawah">
         <ul>
             <li><a href="{{ route ('faq') }}">FAQ</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="{{ route ('user.profile') }}">Profile</a></li>
             <li>
             <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
             Log out
@@ -191,7 +191,12 @@
         <div class="col-md-6">
             <div class="card-custom">
                 <div class="user-info">
-                    <img src="{{ asset("images/profil.jpg") }}" alt="user">
+                    <img src="{{ auth()->user()->photo
+                        ? asset('storage/profile/'.auth()->user()->photo)
+                        : asset('images/profil.jpg') }}"
+                        class="rounded-circle"
+                        width="40">
+
                     <div>
                         <small>User</small>
                         <h5>{{ $user->name }}</h5>

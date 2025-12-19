@@ -169,7 +169,7 @@
     <div class="sidebarkontenbawah">
         <ul>
             <li><a href="{{ route('faq')}}">FAQ</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="{{ route('user.profile') }}">Profile</a></li>
             <li>
             <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
             Log out

@@ -5,6 +5,7 @@ use App\Http\Controllers\DataDiriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\http\Controllers\ProfileController;
+use App\Http\Controllers\EditProfileController;
 
 
 
@@ -51,3 +52,16 @@ Route::get('/pengumuman', function () {
 Route::get('/faq', function () {
     return view('user.faq');
 })->name('faq')->middleware('auth');
+
+Route::middleware('auth')->prefix('profile')->group(function () {
+    Route::get('/', [EditProfileController::class, 'index'])
+        ->name('user.profile');
+
+    Route::get('/edit', [EditProfileController::class, 'edit'])
+        ->name('profile.edit');
+
+    Route::post('/update', [EditProfileController::class, 'update'])
+        ->name('profile.update');
+    Route::post('/profile/photo', [EditProfileController::class, 'updatePhoto'])
+    ->name('profile.photo');
+})->name('user.profile');
