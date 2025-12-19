@@ -170,7 +170,7 @@
 
     <div class="sidebarkontenbawah">
         <ul>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="{{ route ('faq') }}">FAQ</a></li>
             <li><a href="#">Profile</a></li>
             <li>
             <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
@@ -222,7 +222,7 @@
     <div class="card-custom-content">
         <div class="job-card">
             <div class="job-info">
-                <h6 class="fw-bold">WE'RE HIRING – BARISTA</h6>
+                <h6 class="fw-bold">WE&apos;RE HIRING – BARISTA</h6>
                 <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
                 <small>SL Corp membuka kesempatan bagi kamu yang bersemangat, ramah, dan memiliki ketertarikan di dunia F&B...</small>
             </div>
@@ -231,7 +231,7 @@
 
         <div class="job-card">
             <div class="job-info">
-                <h6 class="fw-bold">WE'RE HIRING – CHEF</h6>
+                <h6 class="fw-bold">WE&apos;RE HIRING – CHEF</h6>
                 <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
                 <small>Lowongan untuk posisi Chef bagi individu yang memiliki passion di bidang kuliner...</small>
             </div>
@@ -241,7 +241,7 @@
 
 </div>
 
-!-- MODAL LOGOUT -->
+<!-- MODAL LOGOUT -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4">
