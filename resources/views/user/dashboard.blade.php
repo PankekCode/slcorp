@@ -226,7 +226,7 @@
                 <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
                 <small>SL Corp membuka kesempatan bagi kamu yang bersemangat, ramah, dan memiliki ketertarikan di dunia F&B...</small>
             </div>
-            <a href="#" class="btn btn-sm">SEE MORE</a>
+            <a href="{{ route('barista') }}" class="btn btn-sm">SEE MORE</a>
         </div>
 
         <div class="job-card">
@@ -235,7 +235,7 @@
                 <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
                 <small>Lowongan untuk posisi Chef bagi individu yang memiliki passion di bidang kuliner...</small>
             </div>
-            <a href="#" class="btn btn-sm">SEE MORE</a>
+            <a href="{{ route('chef') }}" class="btn btn-sm">SEE MORE</a>
         </div>
     </div>
 

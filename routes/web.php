@@ -13,7 +13,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/lowongan/barista', function () {
-    return view('.user.lowongan-barista');
+    return view('user.lowongan-barista');
 })->name('barista');
 
 Route::get('/lowongan/chef', function () {
