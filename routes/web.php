@@ -31,8 +31,9 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/user/datadiri', [ProfileController::class, 'index'])->name('user.datadiri');
 Route::post('/user/datadiri', [ProfileController::class, 'store'])->name('user.datadiri.store');
-Route::get('/datadiri/edit', [ProfileController::class, 'edit'])->name('user.datadiri.edit');
-Route::post('/datadiri/update', [ProfileController::class, 'update'])->name('user.datadiri.update');
+Route::get('/datadiri-edit', [ProfileController::class, 'edit'])->name('user.datadiri.edit');
+Route::get('/datadiri', [ProfileController::class, 'show'])->name('user.datadiri');
+Route::put('/datadiri/update', [ProfileController::class, 'update'])->name('user.datadiri.update');
 Route::delete('/user/datadiri', [ProfileController::class, 'destroy'])->name('user.datadiri.delete');
 
 Route::get('/lowongan', function () {

@@ -169,7 +169,7 @@
 
     <h4 class="fw-semibold mb-4">Data Diri</h4>
 
-@if ($profile)
+@if (($mode ?? 'view') === 'view')
     <!-- CARD DATA DIRI -->
     <div class="card-custom">
         <div class="card-header-red">DATA DIRI ANDA</div>
@@ -326,7 +326,7 @@
 
 </div>
 
-!-- MODAL LOGOUT -->
+<!-- MODAL LOGOUT -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4">

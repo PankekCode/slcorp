@@ -169,42 +169,9 @@
 
     <h4 class="fw-semibold mb-4">Edit Data Diri</h4>
 
-@if ($profile)
-    <!-- CARD DATA DIRI -->
-    <div class="card-custom">
-        <div class="card-header-red">DATA DIRI ANDA</div>
-        <div class="p-4">
-            <p><strong>Nama Lengkap:</strong> {{ $profile->nama_lengkap }}</p>
-            <p><strong>NIK:</strong> {{ $profile->nik }}</p>
-            <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
-            <p><strong>No HP:</strong> {{ $profile->no_hp }}</p>
-            <p><strong>Tempat, Tgl Lahir:</strong>
-                {{ $profile->tempat_lahir }}, {{ $profile->tanggal_lahir }}
-            </p>
-            <p><strong>Jenis Kelamin:</strong> {{ $profile->jenis_kelamin }}</p>
-            <p><strong>Agama:</strong> {{ $profile->agama }}</p>
-            <p><strong>Alamat:</strong> {{ $profile->alamat }}</p>
-            <p><strong>Pendidikan:</strong> {{ $profile->pendidikan }}</p>
-
-            <div class="d-flex gap-2 mt-3">
-                <a href="{{ route('user.datadiri.edit') }}"
-                   class="btn btn-warning btn-sm">Edit</a>
-
-                <form action="{{ route('user.datadiri.delete') }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger btn-sm"
-                            onclick="return confirm('Yakin hapus data diri?')">
-                        Hapus
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-@else
-
 <form action="{{ route('user.datadiri.update') }}" method="POST">
     @csrf
+    @method('PUT')
 
 
     <!-- BIODATA -->
@@ -326,11 +293,11 @@
         Batal
     </a>
 </form>
-@endif
+
 
 </div>
 
-!-- MODAL LOGOUT -->
+<!-- MODAL LOGOUT -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4">
