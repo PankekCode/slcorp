@@ -51,8 +51,20 @@ public function update(Request $request)
 
 public function index()
 {
-$profile = Profile::where('user_id', Auth::id())->first();
-return view('user.datadiri', compact('profile'));
+    $profile = Profile::where('user_id', Auth::id())->first();
+    return view('user.datadiri', [
+        'profile' => $profile,
+        'mode' => 'view'
+    ]);
+}
+
+public function edit()
+{
+    $profile = Profile::where('user_id', Auth::id())->first();
+    return view('user.datadiri', [
+        'profile' => $profile,
+        'mode' => 'edit'
+    ]);
 }
 
 public function destroy()
@@ -66,16 +78,6 @@ public function show()
     return view('user.datadiri', [
         'profile' => Auth::user()->profile,
         'mode' => 'view'
-    ]);
-}
-
-
-public function edit()
-{
-    $profile = Auth::user()->profile;
-    return view('user.datadiri-edit', [
-        'profile' => Auth::user()->profile,
-        'mode' => 'edit'
     ]);
 }
 

@@ -32,12 +32,13 @@ Route::middleware(['auth'])->group(function () {
     ->name('user.dashboard');
 });
 
-Route::get('/user/datadiri', [ProfileController::class, 'index'])->name('user.datadiri');
-Route::post('/user/datadiri', [ProfileController::class, 'store'])->name('user.datadiri.store');
-Route::get('/datadiri-edit', [ProfileController::class, 'edit'])->name('user.datadiri.edit');
-Route::get('/datadiri', [ProfileController::class, 'show'])->name('user.datadiri');
-Route::put('/datadiri/update', [ProfileController::class, 'update'])->name('user.datadiri.update');
-Route::delete('/user/datadiri', [ProfileController::class, 'destroy'])->name('user.datadiri.delete');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
+    Route::get('/user/datadiri', [ProfileController::class, 'index'])->name('user.datadiri');
+    Route::get('/user/datadiri/edit', [ProfileController::class, 'edit'])->name('user.datadiri.edit');
+    Route::put('/user/datadiri', [ProfileController::class, 'update'])->name('user.datadiri.update');
+    Route::delete('/user/datadiri', [ProfileController::class, 'destroy'])->name('user.datadiri.delete');
+});
 
 Route::get('/lowongan', function () {
     return view('user.lowongan');
