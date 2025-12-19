@@ -198,13 +198,15 @@
                     </div>
                 </div>
             </div>
+            <a href="{{ route('barista') }}">
             <button class="btn-more">SEE MORE</button>
+            </a>
         </div>
 
         <div class="job-card">
             <div class="job-left">
                 <div class="job-info">
-                <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" alt="chef" height="100px">
+                 <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1046/1046874.png" alt="chef">
                 <div class="text1">
                     <h6>WE'RE HIRING – CHEF</h6>
                     <p>Pembukaan Lowongan Kerja SL Corp</p>
@@ -212,7 +214,9 @@
                 </div>
                 </div>
             </div>
+            <a href="{{ route('chef') }}">
             <button class="btn-more">SEE MORE</button>
+            </a>
         </div>
 
         <div class="job-card">

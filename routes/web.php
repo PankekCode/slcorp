@@ -12,10 +12,13 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/datadiri2', function () {
-    return view('.user.datadiri2');
-})->name('datadiri2');
+Route::get('/lowongan/barista', function () {
+    return view('.user.lowongan-barista');
+})->name('barista');
 
+Route::get('/lowongan/chef', function () {
+    return view('user.lowongan-chef');
+})->name('chef');
 
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
