@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\http\Controllers\ProfileController;
 use App\Http\Controllers\EditProfileController;
+use App\Http\Controllers\PasswordController;
+
 
 
 
@@ -29,8 +31,19 @@ Route::get('/register', [AuthController::class, 'registerPage'])->name('register
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->name('user.dashboard');
+        ->name('user.dashboard');
+
+      Route::get('/password/edit', [PasswordController::class, 'edit'])
+        ->name('password.edit');
+
+    Route::post('/password/update', [PasswordController::class, 'update'])
+        ->name('password.update');
+
+    Route::get('/password/success', [PasswordController::class, 'success'])
+        ->name('password.success');
+
 });
 
 Route::middleware(['auth'])->group(function () {

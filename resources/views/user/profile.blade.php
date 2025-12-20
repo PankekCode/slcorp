@@ -244,9 +244,16 @@
                     @endif
                 </table>
 
-                <a href="{{ route('user.datadiri') }}" class="btn btn-danger btn-sm mt-3">
-                    Lengkapi Data Diri
-                </a>
+                <div class="d-flex gap-2 mt-3">
+                    <a href="{{ route('user.datadiri') }}" class="btn btn-danger btn-sm">
+                        Lengkapi Data Diri
+                    </a>
+
+                    <a href="{{ route('password.edit') }}" class="btn btn-outline-secondary btn-sm">
+                        Edit Password
+                    </a>
+            </div>
+
             </div>
         </div>
     </div>
