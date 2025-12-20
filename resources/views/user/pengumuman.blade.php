@@ -170,6 +170,16 @@
             border: 0px solid red;
         }
 
+        .announcement-card {
+        position: relative;
+        z-index: 1;
+        }
+
+        .announcement-content a {
+        position: relative;
+        z-index: 10;
+        }
+        
     </style>
 </head>
 <body>
@@ -214,7 +224,11 @@
             <div class="announcement-meta mb-1">
                 <span>13/03/2025</span>
             </div>
-            <p>Diberitahukan kepada peserta Seleksi Penerimaan Petugas Ticketing Penempatan Wilayah PT Kereta Commuter Indonesia Tahun 2025, yang namanya tercantum di bawah ini dinyatakan lulus seleksi, selanjutnya...</p>
+            <p>Diberitahukan kepada peserta Seleksi Penerimaan Divisi Marketing Penempatan Di Kantor Pusat PT SL Indonesia, Purwokerto Tahun 2025, yang namanya tercantum di bawah ini dinyatakan lulus seleksi, selanjutnya...</p>
+            <a href="/pengumuman-detail"
+            class="btn btn-light btn-sm mt-2">
+            Lihat Detail Pengumuman
+            </a>
         </div>
     </div>
 
@@ -227,13 +241,13 @@
             <div class="announcement-meta mb-1">
                 <span>12/03/2025</span>
             </div>
-            <p>Diberitahukan kepada peserta Seleksi Penerimaan Petugas Ticketing Penempatan Wilayah PT Kereta Commuter Indonesia Tahun 2025, yang namanya tercantum di bawah ini dinyatakan lulus seleksi, selanjutnya...</p>
+            <p>Diberitahukan kepada peserta Seleksi Penerimaan Karyawan Divisi Finance Penempatan Di Kantor Pusat PT SL Indonesia, Purwokerto Tahun 2025, yang namanya tercantum di bawah ini dinyatakan lulus seleksi, selanjutnya...</p>
         </div>
     </div>
 
 </div>
 
-!-- MODAL LOGOUT -->
+<!-- MODAL LOGOUT -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4">

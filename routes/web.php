@@ -65,3 +65,7 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::post('/profile/photo', [EditProfileController::class, 'updatePhoto'])
     ->name('profile.photo');
 })->name('user.profile');
+
+Route::get('/pengumuman-detail', function () {
+    return view('user.pengumuman-detail');
+})->name('pengumuman.detail');
