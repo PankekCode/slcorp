@@ -222,7 +222,7 @@
                         <td>: {{ $user->email }}</td>
                     </tr>
 
-                    @if($user->profile)
+                    @if(optional($user)->profile)
                         <tr>
                             <td>No HP</td>
                             <td>: {{ $user->profile->no_hp }}</td>
