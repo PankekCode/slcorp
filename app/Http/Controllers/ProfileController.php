@@ -60,18 +60,24 @@ public function index()
 
 public function edit()
 {
-    $profile = Profile::where('user_id', Auth::id())->first();
-    return view('user.datadiri', [
-        'profile' => $profile,
+    $profile = Auth::user()->profile;
+    return view('user.datadiri-edit', [
+        'profile' => Auth::user()->profile,
         'mode' => 'edit'
     ]);
 }
 
+
+
 public function destroy()
 {
-Profile::where('user_id', Auth::id())->delete();
-return back()->with('success', 'Data berhasil dihapus');
+    Auth::user()->profile()->delete();
+
+    return redirect()
+        ->route('user.datadiri')
+        ->with('success', 'Data diri berhasil dihapus');
 }
+    
 
 public function show()
 {

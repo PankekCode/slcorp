@@ -188,17 +188,18 @@
             <div class="d-flex gap-2 mt-3">
                 <a href="{{ route('user.datadiri.edit') }}"
                    class="btn btn-warning btn-sm">Edit</a>
+                   
+                <form action="{{ route('user.datadiri.delete') }}" method="POST"
+                    onsubmit="return confirm('Yakin ingin menghapus data diri?')">
 
-                <form action="{{ route('user.datadiri.update') }}" method="POST">
                     @csrf
-                    @method('PUT')
-
                     @method('DELETE')
-                    <button class="btn btn-danger btn-sm"
-                            onclick="return confirm('Yakin hapus data diri?')">
-                        Hapus
+
+                    <button type="submit" class="btn btn-danger">
+                        Hapus Data
                     </button>
                 </form>
+                
             </div>
         </div>
     </div>

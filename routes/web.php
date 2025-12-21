@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/admin/dashboard', function () {
+Route::get('/admin', function () {
     return view('admin.dashboard');
 })->name('dashboard-admin');
 
@@ -50,13 +50,22 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
-    Route::get('/user/datadiri', [ProfileController::class, 'index'])->name('user.datadiri');
-    Route::get('/user/datadiri/edit', [ProfileController::class, 'edit'])->name('user.datadiri.edit');
-    Route::put('/user/datadiri', [ProfileController::class, 'update'])->name('user.datadiri.update');
-    Route::delete('/user/datadiri', [ProfileController::class, 'destroy'])->name('user.datadiri.delete');
-});
+Route::get('/datadiri', [ProfileController::class, 'index'])
+    ->name('user.datadiri');
+
+Route::post('/datadiri', [ProfileController::class, 'store'])
+    ->name('user.datadiri.store');
+
+Route::get('/datadiri/edit', [ProfileController::class, 'edit'])
+    ->name('user.datadiri.edit');
+
+Route::put('/datadiri/update', [ProfileController::class, 'update'])
+    ->name('user.datadiri.update');
+
+Route::delete('/datadiri/delete', [ProfileController::class, 'destroy'])
+    ->name('user.datadiri.delete');
+
+
 
 Route::get('/lowongan', function () {
     return view('user.lowongan');
