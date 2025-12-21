@@ -7,13 +7,17 @@ use App\Http\Controllers\AuthController;
 use App\http\Controllers\ProfileController;
 use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\PasswordController;
-
+use App\Http\Controllers\Controller;
 
 
 
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('dashboard-admin');
 
 Route::get('/lowongan/barista', function () {
     return view('user.lowongan-barista');
@@ -82,3 +86,8 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 Route::get('/pengumuman-detail', function () {
     return view('user.pengumuman-detail');
 })->name('pengumuman.detail');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+        ->name('admin.dashboard');
+});
