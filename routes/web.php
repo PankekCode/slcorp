@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\LowonganAdminController;
 use App\Http\Controllers\PengumumanAdminController;
 use App\Http\Controllers\ManajemenAdminController;
+use App\Http\Controllers\Admin\LowonganController;
 
 
 
@@ -104,9 +105,17 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.dashboard');
 });
 
-Route::get('/admin/lowongan', function () {
-    return view('admin.lowongan', [LowonganController::class, 'index']);
-})->name('admin.lowongan');
+Route::prefix('admin')->group(function () {
+    Route::get('/lowongan', [LowonganController::class, 'index'])->name('admin.lowongan');
+    Route::get('/lowongan/create', [LowonganController::class, 'create'])->name('admin.lowongan.create');
+    Route::post('/lowongan', [LowonganController::class, 'store'])->name('admin.lowongan.store');
+    Route::delete('/lowongan/{id}', [LowonganController::class, 'destroy'])->name('admin.lowongan.destroy');
+    Route::get('/lowongan/{id}/edit', [LowonganController::class, 'edit'])
+        ->name('lowongan.edit');
+
+    Route::put('/lowongan/{id}', [LowonganController::class, 'update'])
+        ->name('lowongan.update');
+});
 
 Route::get('/admin/pengumuman', function () {
     return view('admin.pengumuman', [PengumumanController::class, 'index']);

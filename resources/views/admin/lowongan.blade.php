@@ -1,3 +1,7 @@
+@php
+use Illuminate\Support\Str;
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,6 +154,83 @@
             border: 0px solid red;
         }
 
+        /* FLOATING ADD BUTTON - MERAH */
+        .floating-add {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #D32F2F, #8E1E1E);
+            color: #fff;
+            font-size: 36px;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.45);
+            z-index: 9999;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .floating-add:hover {
+            transform: scale(1.08);
+            background: linear-gradient(135deg, #b71c1c, #7f1414);
+            color: #fff;
+        }
+
+            /* Wrapper tombol edit & hapus */
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* JARAK ANTAR TOMBOL */
+        }
+
+        /* Reset form agar tidak turun ke bawah */
+        .action-buttons form {
+            margin: 0;
+        }
+
+        /* Tombol umum */
+        .btn-action {
+            border: none;
+            padding: 7px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.25s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 70px;
+        }
+
+        /* EDIT */
+        .btn-edit {
+            background: #B71C1C;
+            color: #fff;
+        }
+
+        .btn-edit:hover {
+            background: #8E1E1E;
+            transform: translateY(-2px);
+        }
+
+        /* HAPUS */
+        .btn-hapus {
+            background: #7F0000;
+            color: #fff;
+        }
+
+        .btn-hapus:hover {
+            background: #5A0000;
+            transform: translateY(-2px);
+        }
+
     </style>
 </head>
 <body>
@@ -184,74 +265,62 @@
 
     <h4 class="fw-semibold mb-4">Lowongan</h4>
 
-    <div class="card-wrapper">
+   <div class="card-wrapper">
 
-        <!-- JOB ITEM -->
+            <!-- JOB ITEM -->
+@if ($lowongans->count())
+    @foreach ($lowongans as $item)
         <div class="job-card">
             <div class="job-left">
                 <div class="job-info">
-                    <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="barista" >
+                    <img class="icon1"
+                         src="{{ $item->icon ?? 'https://cdn-icons-png.flaticon.com/512/1046/1046784.png' }}">
+
                     <div class="text1">
-                    <h6>WE'RE HIRING – BARISTA</h6>
-                    <p>Pembukaan Lowongan Kerja SL Corp</p>
-                    <small>SL Corp membuka kesempatan bagi kamu yang bersemangat, ramah, dan memiliki ketertarikan di dunia F&B untuk bergabung sebagai Barista...</small>
+                        <h6>{{ $item->judul }}</h6>
+                        <p>{{ $item->posisi }}</p>
+                        <small>{{ Str::limit($item->deskripsi, 120) }}</small>
                     </div>
                 </div>
             </div>
-            <a href="{{ route('barista') }}">
-            <button class="btn-more">SEE MORE</button>
+
+            <a href="{{ route('admin.lowongan.create') }}" class="floating-add">
+                <span style="margin-top:-4px">+</span>
             </a>
-        </div>
 
-        <div class="job-card">
-            <div class="job-left">
-                <div class="job-info">
-                 <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1046/1046874.png" alt="chef">
-                <div class="text1">
-                    <h6>WE'RE HIRING – CHEF</h6>
-                    <p>Pembukaan Lowongan Kerja SL Corp</p>
-                    <small>SL Corp membuka lowongan untuk posisi Chef bagi individu yang memiliki passion di bidang kuliner...</small>
-                </div>
-                </div>
+            <div class="action-buttons">
+                <a href="{{ route('lowongan.edit', $item->id) }}"
+                class="btn-action btn-edit">
+                    EDIT
+                </a>
+
+                <form action="{{ route('admin.lowongan.destroy', $item->id) }}"
+                    method="POST"
+                    onsubmit="return confirm('⚠️ Yakin ingin menghapus lowongan ini? Data tidak bisa dikembalikan!')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-action btn-hapus">
+                        HAPUS
+                    </button>
+                </form>
             </div>
-            <a href="{{ route('chef') }}">
-            <button class="btn-more">SEE MORE</button>
-            </a>
-        </div>
 
-        <div class="job-card">
-            <div class="job-left">
-                <div class="job-info">
-                    <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1077/1077976.png" alt="gudang" height="100px">
-                    <div class="text1">
-                    <h6>WE'RE HIRING – HELPER GUDANG</h6>
-                    <p>Pembukaan Lowongan Kerja SL Corp</p>
-                    <small>SL Corp membuka lowongan untuk posisi Helper Gudang yang akan ditempatkan di Gudang SL Corp Purwokerto...</small>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-more">SEE MORE</button>
         </div>
+    @endforeach
+@else
+    <p class="text-muted">Belum ada lowongan.</p>
+    <a href="{{ route('admin.lowongan.create') }}" class="floating-add">
+         <span style="margin-top:-4px">+</span>
+    </a>
+@endif
 
-        <div class="job-card">
-            <div class="job-left">
-                <div class="job-info">
-                    <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="keuangan" height="100px">
-                    <div class="text1">
-                    <h6>WE'RE HIRING – KEUANGAN</h6>
-                    <p>Pembukaan Lowongan Kerja SL Corp</p>
-                    <small>SL Corp membuka lowongan untuk posisi Keuangan yang akan ditempatkan di SL Corp Purwokerto...</small>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-more">SEE MORE</button>
-        </div>
-
-    </div>
 
 </div>
 
-!-- MODAL LOGOUT -->
+
+</div>
+
+<!-- MODAL LOGOUT -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4">
