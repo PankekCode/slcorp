@@ -160,9 +160,9 @@
         <ul>
             <!-- ICON BISA DITAMBAHKAN DI SINI (contoh: <i class="bi bi-house"></i>) -->
             <li><a href="#" class="active">Dashboard</a></li>
-            <li><a href="#">Lowongan</a></li>
-            <li><a href="#">Pengumuman</a></li>
-            <li><a href="#">Manajemen</a></li>
+            <li><a href="{{ route('admin.lowongan') }}">Lowongan</a></li>
+            <li><a href="{{ route('admin.pengumuman') }}">Pengumuman</a></li>
+            <li><a href="{{ route('admin.manajemen') }}">Manajemen</a></li>
         </ul>
 
         <div class="sidebarkontenbawah">

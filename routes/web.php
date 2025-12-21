@@ -8,6 +8,9 @@ use App\http\Controllers\ProfileController;
 use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\LowonganAdminController;
+use App\Http\Controllers\PengumumanAdminController;
+use App\Http\Controllers\ManajemenAdminController;
 
 
 
@@ -100,3 +103,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])
         ->name('admin.dashboard');
 });
+
+Route::get('/admin/lowongan', function () {
+    return view('admin.lowongan', [LowonganController::class, 'index']);
+})->name('admin.lowongan');
+
+Route::get('/admin/pengumuman', function () {
+    return view('admin.pengumuman', [PengumumanController::class, 'index']);
+})->name('admin.pengumuman');
+
+Route::get('/admin/manajemen', function () {
+    return view('admin.manajemen', [PengumumanController::class, 'index']);
+})->name('admin.manajemen');
