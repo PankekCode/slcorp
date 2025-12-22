@@ -183,9 +183,7 @@
 
         <!-- TOPBAR -->
         <div class="d-flex justify-content-end mb-3">
-           <img src="{{ auth()->user()->photo
-                        ? asset('storage/profile/'.auth()->user()->photo)
-                        : asset('images/profil.jpg') }}"
+           <img src="{{ auth()->user()?->photo }}"
                         class="rounded-circle"
                         width="40">
         </div>
@@ -196,9 +194,7 @@
         <div class="col-md-6">
             <div class="card-custom">
                 <div class="user-info">
-                    <img src="{{ auth()->user()->photo
-                        ? asset('storage/profile/'.auth()->user()->photo)
-                        : asset('images/profil.jpg') }}"
+                    <img src="{{ auth()->user()?->photo }}"
                         class="rounded-circle"
                         width="40">
                         <div class="ms-3">

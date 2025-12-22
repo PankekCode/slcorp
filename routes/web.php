@@ -12,7 +12,6 @@ use App\Http\Controllers\Admin\ManajemenController;
 use App\Http\Controllers\Admin\LowonganController;
 use App\Http\Controllers\Admin\FaqController;
 
-
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -124,4 +123,14 @@ Route::prefix('admin')->group(function () {
     Route::delete('/faq/{id}', [FaqController::class, 'destroy'])->name('admin.faq.destroy');
     Route::get('/faq/{id}/edit', [FaqController::class, 'edit'])->name('faq.edit');
     Route::put('/faq/{id}', [FaqController::class, 'update'])->name('faq.update');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('admin.pengumuman');
+    Route::get('/pengumuman/create', [PengumumanController::class, 'create'])->name('admin.pengumuman.create');
+    Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('admin.pengumuman.store');
+    Route::get('/pengumuman/{id}/edit', [PengumumanController::class, 'edit'])->name('admin.pengumuman.edit');
+    Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('admin.pengumuman.update');
+    Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('admin.pengumuman.destroy');
+    Route::get('/pengumuman/{id}', [PengumumanController::class, 'show'])->name('admin.pengumuman.show');
 });
