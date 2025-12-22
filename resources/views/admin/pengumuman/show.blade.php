@@ -96,7 +96,7 @@
     <div class="logo">SL INDONESIA</div>
 
     <ul>
-        <li><a href="{{ route('dashboard-admin') }}">Dashboard</a></li>
+        <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
         <li><a href="{{ route('admin.lowongan') }}">Lowongan</a></li>
         <li><a href="{{ route('admin.pengumuman') }}" class="active">Pengumuman</a></li>
         <li><a href="{{ route('admin.manajemen') }}">Manajemen</a></li>

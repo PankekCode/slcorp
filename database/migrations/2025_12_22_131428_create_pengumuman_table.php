@@ -13,17 +13,13 @@ return new class extends Migration
     {
         Schema::create('pengumuman', function (Blueprint $table) {
             $table->id();
-
             $table->string('judul');
-            $table->text('deskripsi');     
-            $table->string('lokasi');      
-
+            $table->text('deskripsi');
             $table->text('ringkasan');
-            $table->longText('isi');
-
+            $table->text('isi');
+            $table->string('lokasi')->nullable();
             $table->string('gambar')->nullable();
             $table->date('tanggal');
-
             $table->timestamps();
         });
     }

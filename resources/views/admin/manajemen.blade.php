@@ -190,7 +190,7 @@
 
     <ul>
         <!-- ICON BISA DITAMBAHKAN DI SINI (contoh: <i class="bi bi-house"></i>) -->
-        <li><a href="{{ route('dashboard-admin') }}">Dashboard</a></li>
+        <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
         <li><a href="{{ route('admin.lowongan') }}">Lowongan</a></li>
         <li><a href="{{ route('admin.pengumuman') }}">Pengumuman</a></li>
         <li><a href="#" class="active">Manajemen</a></li>
