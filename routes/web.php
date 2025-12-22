@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PengumumanController;
 use App\Http\Controllers\Admin\ManajemenController;
 use App\Http\Controllers\Admin\LowonganController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\LowonganController as UserLowonganController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,9 +63,13 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::get('/lowongan', function () {
-    return view('user.lowongan');
-})->name('lowongan')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/lowongan', [UserLowonganController::class, 'index'])
+        ->name('user.lowongan');
+
+    Route::get('/lowongan/{id}', [UserLowonganController::class, 'show'])
+        ->name('user.lowongan.detail');
+});
 
 Route::get('/pengumuman', function () {
     return view('user.pengumuman');

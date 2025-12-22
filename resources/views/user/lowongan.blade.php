@@ -184,74 +184,24 @@
 
     <h4 class="fw-semibold mb-4">Lowongan</h4>
 
-    <div class="card-wrapper">
+    @foreach ($lowongans as $lowongan)
+        <div class="card">
+            <h3>{{ $lowongan->judul }}</h3>
+            <p><strong>Posisi:</strong> {{ $lowongan->posisi }}</p>
+            <p><strong>Lokasi:</strong> {{ $lowongan->lokasi }}</p>
 
-        <!-- JOB ITEM -->
-        <div class="job-card">
-            <div class="job-left">
-                <div class="job-info">
-                    <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="barista" >
-                    <div class="text1">
-                    <h6>WE'RE HIRING – BARISTA</h6>
-                    <p>Pembukaan Lowongan Kerja SL Corp</p>
-                    <small>SL Corp membuka kesempatan bagi kamu yang bersemangat, ramah, dan memiliki ketertarikan di dunia F&B untuk bergabung sebagai Barista...</small>
-                    </div>
-                </div>
-            </div>
-            <a href="{{ route('barista') }}">
-            <button class="btn-more">SEE MORE</button>
+            <a href="{{ route('user.lowongan.detail', $lowongan->id) }}">
+                Lihat Detail
             </a>
         </div>
+    @endforeach
 
-        <div class="job-card">
-            <div class="job-left">
-                <div class="job-info">
-                 <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1046/1046874.png" alt="chef">
-                <div class="text1">
-                    <h6>WE'RE HIRING – CHEF</h6>
-                    <p>Pembukaan Lowongan Kerja SL Corp</p>
-                    <small>SL Corp membuka lowongan untuk posisi Chef bagi individu yang memiliki passion di bidang kuliner...</small>
-                </div>
-                </div>
-            </div>
-            <a href="{{ route('chef') }}">
-            <button class="btn-more">SEE MORE</button>
-            </a>
-        </div>
-
-        <div class="job-card">
-            <div class="job-left">
-                <div class="job-info">
-                    <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/1077/1077976.png" alt="gudang" height="100px">
-                    <div class="text1">
-                    <h6>WE'RE HIRING – HELPER GUDANG</h6>
-                    <p>Pembukaan Lowongan Kerja SL Corp</p>
-                    <small>SL Corp membuka lowongan untuk posisi Helper Gudang yang akan ditempatkan di Gudang SL Corp Purwokerto...</small>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-more">SEE MORE</button>
-        </div>
-
-        <div class="job-card">
-            <div class="job-left">
-                <div class="job-info">
-                    <img class="icon1" src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="keuangan" height="100px">
-                    <div class="text1">
-                    <h6>WE'RE HIRING – KEUANGAN</h6>
-                    <p>Pembukaan Lowongan Kerja SL Corp</p>
-                    <small>SL Corp membuka lowongan untuk posisi Keuangan yang akan ditempatkan di SL Corp Purwokerto...</small>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-more">SEE MORE</button>
-        </div>
 
     </div>
 
 </div>
 
-!-- MODAL LOGOUT -->
+<!-- MODAL LOGOUT -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4">

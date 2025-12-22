@@ -192,7 +192,7 @@
         <!-- ICON BISA DITAMBAHKAN DI SINI -->
         <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
         <li><a href="{{ route('user.datadiri') }}">Data Diri</a></li>
-        <li><a href="{{ route('lowongan') }}">Lowongan</a></li>
+        <li><a href="{{ route('user.lowongan') }}">Lowongan</a></li>
         <li><a href="#" class="active">Pengumuman</a></li>
     </ul>
 

@@ -164,7 +164,7 @@
         <!-- ICON BISA DITAMBAHKAN DI SINI (contoh: <i class="bi bi-house"></i>) -->
         <li><a href="#" class="active">Dashboard</a></li>
         <li><a href="{{ route('user.datadiri') }}">Data Diri</a></li>
-        <li><a href="{{ route('lowongan') }}">Lowongan</a></li>
+        <li><a href="{{ route('user.lowongan') }}">Lowongan</a></li>
         <li><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
     </ul>
 
