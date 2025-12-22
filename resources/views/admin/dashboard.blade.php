@@ -225,26 +225,33 @@
         </div>
 
        <!-- JOB LIST -->
-    <div class="card-custom-content">
-        <div class="job-card">
-            <div class="job-info">
-                <h6 class="fw-bold">WE&apos;RE HIRING – BARISTA</h6>
-                <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
-                <small>SL Corp membuka kesempatan bagi kamu yang bersemangat, ramah, dan memiliki ketertarikan di dunia F&B...</small>
-            </div>
-            <a href="{{ route('barista') }}" class="btn btn-sm">SEE MORE</a>
-        </div>
+        <div class="card-custom-content">
+            @forelse ($lowongans as $lowongan)
+                <div class="job-card">
+                    <div class="job-info">
+                        <h6 class="fw-bold">
+                            WE&apos;RE HIRING – {{ strtoupper($lowongan->posisi) }}
+                        </h6>
 
-        <div class="job-card">
-            <div class="job-info">
-                <h6 class="fw-bold">WE&apos;RE HIRING – CHEF</h6>
-                <p class="mb-1">Pembukaan Lowongan Kerja SL Corp</p>
-                <small>Lowongan untuk posisi Chef bagi individu yang memiliki passion di bidang kuliner...</small>
-            </div>
-            <a href="{{ route('chef') }}" class="btn btn-sm">SEE MORE</a>
+                        <p class="mb-1">
+                            {{ $lowongan->judul }}
+                        </p>
+
+                        <small>
+                            {{ Str::limit($lowongan->deskripsi, 120) }}
+                        </small>
+                    </div>
+
+                    <a href="{{ route('admin.lowongan', $lowongan->id) }}"
+                    class="btn btn-sm">
+                        DETAIL
+                    </a>
+                </div>
+            @empty
+                <p class="text-muted">Belum ada lowongan.</p>
+            @endforelse
         </div>
     </div>
-        </div>
 
     </main>
 

@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardController as UserDashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\http\Controllers\ProfileController;
@@ -13,21 +14,10 @@ use App\Http\Controllers\Admin\LowonganController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\LowonganController as UserLowonganController;
 
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->name('dashboard-admin');
-
-Route::get('/lowongan/barista', function () {
-    return view('user.lowongan-barista');
-})->name('barista');
-
-Route::get('/lowongan/chef', function () {
-    return view('user.lowongan-chef');
-})->name('chef');
 
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -38,7 +28,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])
         ->name('user.dashboard');
 
       Route::get('/password/edit', [PasswordController::class, 'edit'])
@@ -97,7 +87,7 @@ Route::get('/pengumuman-detail', function () {
 })->name('pengumuman.detail');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
         ->name('admin.dashboard');
 });
 

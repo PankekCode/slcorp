@@ -1,7 +1,3 @@
-@php
-use Illuminate\Support\Str;
-@endphp
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,7 +113,10 @@ use Illuminate\Support\Str;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-left: 18%;
             margin-bottom: 20px;
+            margin-right: 2%;
+            margin-top: 2%;
         }
 
         .job-card .job-info {
@@ -130,6 +129,12 @@ use Illuminate\Support\Str;
             font-size: 13px;
         }
 
+        .job-info {
+            display: flex;
+            align-items: center;      
+            gap: 16px;                
+}
+
         .job-icon {
             margin-right: 15px;
             border: 2px solid red;
@@ -137,98 +142,42 @@ use Illuminate\Support\Str;
         }
 
         .icon1 {
-            display: block;
-            width: 100px;
-            height: 100px;
-            border: 0px solid red;
-            margin-top: 20px;
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            flex-shrink: 0;    
+            
         }
 
         .text1 {
-            margin-left: 130px;
-            margin-top: -105px;
-            border: 0px solid red;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 0px solid white;
+            margin-right: -1000px;
         }
 
         .job-left {
             border: 0px solid red;
         }
 
-        /* FLOATING ADD BUTTON - MERAH */
-        .floating-add {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #D32F2F, #8E1E1E);
-            color: #fff;
-            font-size: 36px;
-            font-weight: bold;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.45);
-            z-index: 9999;
-            transition: all 0.2s ease-in-out;
+        .detail-text {
+            margin-left: 18%;
+            margin-top: 1%
         }
 
-        .floating-add:hover {
-            transform: scale(1.08);
-            background: linear-gradient(135deg, #b71c1c, #7f1414);
-            color: #fff;
+        .detail-body {
+            margin-left: 18%;
+            margin-top: 2%
         }
 
-            /* Wrapper tombol edit & hapus */
-        .action-buttons {
-            display: flex;
-            align-items: center;
-            gap: 10px; /* JARAK ANTAR TOMBOL */
+        .detail-footer {
+            margin-left: 18%;
+            margin-top: 30%
         }
 
-        /* Reset form agar tidak turun ke bawah */
-        .action-buttons form {
-            margin: 0;
-        }
+        .btn-apply {
 
-        /* Tombol umum */
-        .btn-action {
-            border: none;
-            padding: 7px 16px;
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: 0.25s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 70px;
-        }
-
-        /* EDIT */
-        .btn-edit {
-            background: #B71C1C;
-            color: #fff;
-        }
-
-        .btn-edit:hover {
-            background: #8E1E1E;
-            transform: translateY(-2px);
-        }
-
-        /* HAPUS */
-        .btn-hapus {
-            background: #7F0000;
-            color: #fff;
-        }
-
-        .btn-hapus:hover {
-            background: #5A0000;
-            transform: translateY(-2px);
         }
 
     </style>
@@ -241,16 +190,16 @@ use Illuminate\Support\Str;
 
     <ul>
         <!-- ICON BISA DITAMBAHKAN DI SINI (contoh: <i class="bi bi-house"></i>) -->
-        <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ route('user.datadiri') }}">Data Diri</a></li>
         <li><a href="#" class="active">Lowongan</a></li>
-        <li><a href="{{ route('admin.pengumuman') }}">Pengumuman</a></li>
-        <li><a href="{{ route('admin.manajemen') }}">Manajemen</a></li>
+        <li><a href="{{ route('pengumuman') }}">Pengumuman</a></li>
     </ul>
 
     <div class="sidebarkontenbawah">
         <ul>
-            <li><a href="{{ route('admin.faq') }}">FAQ</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="{{ route('faq')}}">FAQ</a></li>
+            <li><a href="{{ route('user.profile') }}">Profile</a></li>
             <li>
             <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
             Log out
@@ -261,64 +210,35 @@ use Illuminate\Support\Str;
 </div>
 
 <!-- MAIN CONTENT -->
-<div class="main-content">
+<div class="detail-wrapper">
 
-    <h4 class="fw-semibold mb-4">Lowongan</h4>
+    <div class="detail-card">
 
-   <div class="card-wrapper">
+        <div class="detail-header">
 
-            <!-- JOB ITEM -->
-@if ($lowongans->count())
-    @foreach ($lowongans as $item)
-        <div class="job-card">
-            <div class="job-left">
-                <div class="job-info">
-                    <img class="icon1"
-                         src="{{ $item->icon ?? 'https://cdn-icons-png.flaticon.com/512/1046/1046784.png' }}">
-
-                    <div class="text1">
-                        <h6>{{ $item->judul }}</h6>
-                        <p>{{ $item->posisi }}</p>
-                        <small>{{ Str::limit($item->deskripsi, 120) }}</small>
-                    </div>
-                </div>
+            <div class="detail-text">
+                <h2>WE'RE HIRING – {{ strtoupper($lowongan->posisi) }}</h2>
+                <p class="subtitle">Pembukaan Lowongan Kerja SL Corp</p>
+                <span class="location">📍 {{ $lowongan->lokasi }}</span>
             </div>
-
-            <a href="{{ route('admin.lowongan.create') }}" class="floating-add">
-                <span style="margin-top:-4px">+</span>
-            </a>
-
-            <div class="action-buttons">
-                <a href="{{ route('lowongan.edit', $item->id) }}"
-                class="btn-action btn-edit">
-                    EDIT
-                </a>
-
-                <form action="{{ route('admin.lowongan.destroy', $item->id) }}"
-                    method="POST"
-                    onsubmit="return confirm('⚠️ Yakin ingin menghapus lowongan ini? Data tidak bisa dikembalikan!')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn-action btn-hapus">
-                        HAPUS
-                    </button>
-                </form>
-            </div>
-
         </div>
-    @endforeach
-@else
-    <p class="text-muted">Belum ada lowongan.</p>
-    <a href="{{ route('admin.lowongan.create') }}" class="floating-add">
-         <span style="margin-top:-4px">+</span>
-    </a>
-@endif
 
+
+        <div class="detail-body">
+            <h4>Deskripsi Pekerjaan</h4>
+            <p>{{ $lowongan->deskripsi }}</p>
+        </div>
+
+        <div class="detail-footer">
+            <a href="{{ route('user.lowongan') }}" class="btn btn-secondary">← Kembali</a>
+            <button class="btn btn-danger">APPLY NOW</button>
+        </div>
+
+    </div>
 
 </div>
 
 
-</div>
 
 <!-- MODAL LOGOUT -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">

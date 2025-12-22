@@ -113,7 +113,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-left: 18%;
             margin-bottom: 20px;
+            margin-right: 2%;
+            margin-top: 2%;
         }
 
         .job-card .job-info {
@@ -126,6 +129,12 @@
             font-size: 13px;
         }
 
+        .job-info {
+            display: flex;
+            align-items: center;      /* 🔥 INI KUNCI: sejajar vertikal */
+            gap: 16px;                /* jarak icon & teks */
+}
+
         .job-icon {
             margin-right: 15px;
             border: 2px solid red;
@@ -133,17 +142,19 @@
         }
 
         .icon1 {
-            display: block;
-            width: 100px;
-            height: 100px;
-            border: 0px solid red;
-            margin-top: 20px;
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            flex-shrink: 0;    
+            
         }
 
         .text1 {
-            margin-left: 130px;
-            margin-top: -105px;
-            border: 0px solid red;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 0px solid white;
+            margin-right: -1000px;
         }
 
         .job-left {
@@ -180,26 +191,41 @@
 </div>
 
 <!-- MAIN CONTENT -->
-<div class="main-content">
+<div class="card-wrapper">
 
-    <h4 class="fw-semibold mb-4">Lowongan</h4>
+    @forelse ($lowongans as $lowongan)
+        <div class="job-card">
+            <div class="job-left">
+                <div class="job-info">
 
-    @foreach ($lowongans as $lowongan)
-        <div class="card">
-            <h3>{{ $lowongan->judul }}</h3>
-            <p><strong>Posisi:</strong> {{ $lowongan->posisi }}</p>
-            <p><strong>Lokasi:</strong> {{ $lowongan->lokasi }}</p>
+                    {{-- ICON --}}
+                    <img class="icon1"
+                         src="{{ $lowongan->icon ?? 'https://cdn-icons-png.flaticon.com/512/1046/1046784.png' }}"
+                         alt="{{ $lowongan->posisi }}">
+
+                    <div class="text1">
+                        <h6>WE'RE HIRING – {{ strtoupper($lowongan->posisi) }}</h6>
+                        <p>Pembukaan Lowongan Kerja SL Corp</p>
+
+                        {{-- BATASI DESKRIPSI --}}
+                        <small>
+                            {{ \Illuminate\Support\Str::limit($lowongan->deskripsi, 120) }}
+                        </small>
+                    </div>
+
+                </div>
+            </div>
 
             <a href="{{ route('user.lowongan.detail', $lowongan->id) }}">
-                Lihat Detail
+                <button class="btn-more">SEE MORE</button>
             </a>
         </div>
-    @endforeach
-
-
-    </div>
+    @empty
+        <p>Belum ada lowongan tersedia.</p>
+    @endforelse
 
 </div>
+
 
 <!-- MODAL LOGOUT -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
