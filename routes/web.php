@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\PengumumanController;
 use App\Http\Controllers\Admin\ManajemenController;
 use App\Http\Controllers\Admin\LowonganController;
-
+use App\Http\Controllers\Admin\FaqController;
 
 
 Route::get('/', function () {
@@ -116,3 +116,12 @@ Route::get('/admin/pengumuman', function () {
 Route::get('/admin/manajemen', function () {
     return view('admin.manajemen', [PengumumanController::class, 'index']);
 })->name('admin.manajemen');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq');
+    Route::get('/faq/create', [FaqController::class, 'create'])->name('admin.faq.create');
+    Route::post('/faq', [FaqController::class, 'store'])->name('admin.faq.store');
+    Route::delete('/faq/{id}', [FaqController::class, 'destroy'])->name('admin.faq.destroy');
+    Route::get('/faq/{id}/edit', [FaqController::class, 'edit'])->name('faq.edit');
+    Route::put('/faq/{id}', [FaqController::class, 'update'])->name('faq.update');
+});

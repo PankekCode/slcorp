@@ -167,7 +167,7 @@
 
         <div class="sidebarkontenbawah">
             <ul>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="{{ route('admin.faq') }}">FAQ</a></li>
                 <li><a href="#">Profile</a></li>
                 <li>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
