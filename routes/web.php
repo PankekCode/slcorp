@@ -1,16 +1,14 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DataDiriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\http\Controllers\ProfileController;
 use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\LowonganAdminController;
-use App\Http\Controllers\PengumumanAdminController;
-use App\Http\Controllers\ManajemenAdminController;
+use App\Http\Controllers\Admin\PengumumanController;
+use App\Http\Controllers\Admin\ManajemenController;
 use App\Http\Controllers\Admin\LowonganController;
 
 
@@ -54,21 +52,15 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::get('/datadiri', [ProfileController::class, 'index'])
-    ->name('user.datadiri');
 
-Route::post('/datadiri', [ProfileController::class, 'store'])
-    ->name('user.datadiri.store');
-
-Route::get('/datadiri/edit', [ProfileController::class, 'edit'])
-    ->name('user.datadiri.edit');
-
-Route::put('/datadiri/update', [ProfileController::class, 'update'])
-    ->name('user.datadiri.update');
-
-Route::delete('/datadiri/delete', [ProfileController::class, 'destroy'])
-    ->name('user.datadiri.delete');
-
+Route::middleware(['auth'])->group(function () {
+        Route::get('/user/datadiri', [ProfileController::class, 'index'])->name('user.datadiri');
+        Route::post('/user/datadiri', [ProfileController::class, 'store'])->name('user.datadiri.store');
+        Route::get('/datadiri-edit', [ProfileController::class, 'edit'])->name('user.datadiri.edit');
+        Route::get('/datadiri', [ProfileController::class, 'show'])->name('user.datadiri');
+        Route::put('/datadiri/update', [ProfileController::class, 'update'])->name('user.datadiri.update');
+        Route::delete('/user/datadiri', [ProfileController::class, 'destroy'])->name('user.datadiri.delete');
+});
 
 
 Route::get('/lowongan', function () {

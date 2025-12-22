@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\PengumumanAdminController;
+use App\Http\Controllers\Controller;
 
 class PengumumanController extends Controller
 {

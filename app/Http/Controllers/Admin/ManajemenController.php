@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\ManajemenAdminController;
+use App\Http\Controllers\Controller;
 
 class ManajemenController extends Controller
 {

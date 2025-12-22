@@ -51,12 +51,27 @@ public function update(Request $request)
 
 public function index()
 {
-    $profile = Profile::where('user_id', Auth::id())->first();
+$profile = Profile::where('user_id', Auth::id())->first();
+return view('user.datadiri', compact('profile'));
+}
+
+public function destroy()
+{
+Profile::where('user_id', Auth::id())->delete();
+return back()->with('success', 'Data berhasil dihapus');
+}
+
+public function show()
+{
+    // Menggunakan ?? new Profile() agar tidak null
+    $profile = Auth::user()->profile ?? new Profile();
+
     return view('user.datadiri', [
         'profile' => $profile,
         'mode' => 'view'
     ]);
 }
+
 
 public function edit()
 {
@@ -64,26 +79,6 @@ public function edit()
     return view('user.datadiri-edit', [
         'profile' => Auth::user()->profile,
         'mode' => 'edit'
-    ]);
-}
-
-
-
-public function destroy()
-{
-    Auth::user()->profile()->delete();
-
-    return redirect()
-        ->route('user.datadiri')
-        ->with('success', 'Data diri berhasil dihapus');
-}
-    
-
-public function show()
-{
-    return view('user.datadiri', [
-        'profile' => Auth::user()->profile,
-        'mode' => 'view'
     ]);
 }
 
