@@ -235,6 +235,10 @@
                             <td>Pendidikan</td>
                             <td>: {{ $user->profile->pendidikan }}</td>
                         </tr>
+                        <tr>
+                            <td>Agama</td>
+                            <td>: {{ $user->profile->agama }}</td>
+                        </tr>
                     @else
                         <tr>
                             <td colspan="2" class="text-muted">
