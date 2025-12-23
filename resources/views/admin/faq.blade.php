@@ -202,7 +202,12 @@
     <div class="sidebarkontenbawah">
         <ul>
             <li><a href="#" class="active">FAQ</a></li>
-            <li><a href="#">Profile</a></li>
+            <li class="nav-item">
+                <a href="{{ route('admin.profile') }}" class="nav-link">
+                    <i class="bi bi-person"></i>
+                    Profile
+                </a>
+            </li>
             <li><a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Log out</a></li>
         </ul>
     </div>

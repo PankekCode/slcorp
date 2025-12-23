@@ -149,19 +149,14 @@
     <ul>
         <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
         <li><a href="{{ route('admin.lowongan') }}">Lowongan</a></li>
-        <li><a href="#" class="active">Pengumuman</a></li>
+        <li><a href="{{ route('admin.pengumuman') }}">Pengumuman</a></li>
         <li><a href="{{ route('admin.manajemen') }}">Manajemen</a></li>
     </ul>
 
     <div class="sidebarkontenbawah">
         <ul>
             <li><a href="{{ route('admin.faq') }}">FAQ</a></li>
-            <li>
-            <a href="{{ route('admin.profile') }}" class="nav-link">
-                    <i class="bi bi-person"></i>
-                    Profile
-                </a>
-            <li>
+            <li><a href="#" class="active">Profile</a></li>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                     Log out
                 </a>
@@ -171,49 +166,65 @@
 </div>
 
 <!-- MAIN CONTENT -->
-<div class="main-content">
+<div class="container-fluid">
+    <h4 class="mb-4">Profile</h4>
 
-    <h4 class="mb-4">Pengumuman</h4>
+    <div class="row">
+        <!-- FOTO -->
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <img src="{{ $admin->foto ? asset('storage/'.$admin->foto) : asset('assets/img/default.png') }}"
+                     class="rounded-circle mx-auto mb-3"
+                     width="140" height="140"
+                     style="object-fit:cover">
 
-    @forelse ($pengumuman as $item)
-        <div class="announcement-card">
-            <div class="announcement-content">
-                <h6>{{ $item->judul }}</h6>
-                <span>{{ $item->tanggal }}</span>
+                <h5 class="mb-0">{{ $profile->nama_lengkap }}</h5>
+                <small class="text-muted">Admin</small>
 
-                <p class="mt-2">
-                    {{ $item->ringkasan }}
-                </p>
-
-                <div class="announcement-actions">
-                    <a href="{{ route('admin.pengumuman.edit', $item->id) }}" class="btn-edit">
-                        Edit
-                    </a>
-
-                    <a href="{{ route('admin.pengumuman.show', $item->id) }}" class="btn-edit">
-                        SHOW
-                    </a>
-
-                    <form action="{{ route('admin.pengumuman.destroy', $item->id) }}"
-                          method="POST"
-                          onsubmit="return confirm('Yakin ingin menghapus pengumuman ini?')">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn-hapus">
-                            Hapus
-                        </button>
-                    </form>
-                </div>
+                <form action="{{ route('admin.profile.photo') }}"
+                      method="POST"
+                      enctype="multipart/form-data"
+                      class="mt-3">
+                    @csrf
+                    <input type="file" name="foto" class="form-control mb-2" required>
+                    <button class="btn btn-outline-dark btn-sm">
+                        Ubah Foto Profile
+                    </button>
+                </form>
             </div>
         </div>
-    @empty
-        <p class="text-center text-muted mt-5">Belum ada pengumuman.</p>
-    @endforelse
 
+        <!-- DATA -->
+        <div class="col-md-8">
+            <div class="card p-4">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" value="{{ $admin->name }}" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Email Address</label>
+                        <input type="text" class="form-control" value="{{ $admin->email }}" disabled>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label>Phone Number</label>
+                    <input type="text" class="form-control" value="{{ $profile->no_hp }}" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label>Address</label>
+                    <textarea class="form-control" disabled>{{ $profile->alamat }}</textarea>
+                </div>
+
+                <a href="{{ route('admin.profile.edit') }}" class="btn btn-dark">
+                    Edit Profile
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<!-- TOMBOL TAMBAH -->
-<a href="{{ route('admin.pengumuman.create') }}" class="floating-add">+</a>
 
 <!-- MODAL LOGOUT -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
@@ -225,13 +236,15 @@
             </div>
 
             <div class="modal-body">
-                <p style="color:black">Apakah kamu yakin ingin keluar dari akun?</p>
+                <p>Apakah kamu yakin ingin keluar dari akun?</p>
             </div>
 
             <div class="modal-footer border-0">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                     Batal
                 </button>
+
+                <!-- TOMBOL LOGOUT -->
                 <a href="{{ route('welcome') }}" class="btn btn-danger">
                     Ya, Logout
                 </a>
@@ -239,8 +252,9 @@
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 </html>
+<!DOCTYPE html>

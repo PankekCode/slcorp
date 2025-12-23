@@ -143,3 +143,23 @@ Route::prefix('admin')->group(function () {
     Route::get('/manajemen/reset-password/success', [ManajemenController::class, 'resetSuccess']) ->name('admin.manajemen.reset.success');
 
 });
+
+Route::middleware('auth')
+    ->prefix('admin/profile')
+    ->group(function () {
+
+    Route::get('/', [EditProfileController::class, 'index'])
+        ->name('admin.profile');
+
+    Route::get('/edit', [EditProfileController::class, 'edit'])
+        ->name('admin.profile.edit');
+
+    Route::post('/update', [EditProfileController::class, 'update'])
+        ->name('admin.profile.update');
+
+    Route::post('/photo', [EditProfileController::class, 'updatePhoto'])
+        ->name('admin.profile.photo');
+});
+
+
+
