@@ -180,6 +180,29 @@
         z-index: 10;
         }
         
+        .floating-add {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #D32F2F, #8E1E1E);
+        color: #fff;
+        font-size: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(211, 47, 47, 0.45);
+        z-index: 999;
+        }
+
+        .floating-add:hover {
+            transform: scale(1.05);
+            color: #fff;
+        }
+        
     </style>
 </head>
 <body>
@@ -193,7 +216,7 @@
         <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
         <li><a href="{{ route('admin.lowongan') }}">Lowongan</a></li>
         <li><a href="{{ route('admin.pengumuman') }}">Pengumuman</a></li>
-        <li><a href="#" class="active">Manajemen</a></li>
+        <li><a href="{{ route('admin.manajemen') }}" class="active">Manajemen</a></li>
     </ul>
 
     <div class="sidebarkontenbawah">
@@ -211,7 +234,143 @@
 
 <!-- MAIN CONTENT -->
 
+<div class="main-content">
 
+    <h4 class="mb-4">Management</h4>
+
+    <div class="card-custom">
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Agama</th>
+                        <th>Tanggal dibuat</th>
+                        <th>Status</th>
+                        <th class="text-center">Ket.</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @forelse($admins as $admin)
+                        <tr>
+                            <td>{{ $admin->profile->nama_lengkap ?? $admin->name }}</td>
+                            <td>{{ $admin->email }}</td>
+                            <td>{{ $admin->profile->agama ?? '-' }}</td>
+                            <td>{{ optional($admin->created_at)->format('d-m-Y') }}</td>
+
+                            {{-- karena kolom status belum ada di DB, sementara default AKTIF --}}
+                            <td>
+                                <span class="badge rounded-pill text-bg-success">AKTIF</span>
+                            </td>
+
+                            <td class="text-center">
+                                <a href="{{ route('admin.manajemen.edit', $admin->id) }}" class="btn btn-sm btn-light">Edit</a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">
+                                Belum ada data admin.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<!-- MODAL TAMBAH ADMIN -->
+<div class="modal fade" id="tambahAdminModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-4">
+
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-semibold">Tambah Admin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form action="{{ route('admin.manajemen.store') }}" method="POST">
+                @csrf
+
+                <div class="modal-body">
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nama Lengkap</label>
+                            <input type="text"
+                                   name="nama_lengkap"
+                                   class="form-control"
+                                   placeholder="Masukkan nama lengkap"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email"
+                                   name="email"
+                                   class="form-control"
+                                   placeholder="admin@email.com"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Agama</label>
+                            <input type="text"
+                                   name="agama"
+                                   class="form-control"
+                                   placeholder="Contoh: Islam">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">No. HP</label>
+                            <input type="text"
+                                   name="no_hp"
+                                   class="form-control"
+                                   placeholder="08xxxxxxxxxx">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Password</label>
+                            <input type="password"
+                                   name="password"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Konfirmasi Password</label>
+                            <input type="password"
+                                   name="password_confirmation"
+                                   class="form-control"
+                                   required>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer border-0">
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Batal
+                    </button>
+
+                    <button type="submit"
+                            class="btn btn-danger px-4">
+                        Simpan
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+    <a href="#" class="floating-add" data-bs-toggle="modal" data-bs-target="#tambahAdminModal" title="Tambah Admin"> + </a>
+
+</div>
 
 
 <!-- MODAL LOGOUT -->

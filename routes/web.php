@@ -107,9 +107,9 @@ Route::get('/admin/pengumuman', function () {
     return view('admin.pengumuman', [PengumumanController::class, 'index']);
 })->name('admin.pengumuman');
 
-Route::get('/admin/manajemen', function () {
-    return view('admin.manajemen', [PengumumanController::class, 'index']);
-})->name('admin.manajemen');
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/manajemen', [ManajemenController::class, 'index'])->name('admin.manajemen');
+});
 
 Route::prefix('admin')->group(function () {
     Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq');
@@ -128,4 +128,18 @@ Route::prefix('admin')->group(function () {
     Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('admin.pengumuman.update');
     Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('admin.pengumuman.destroy');
     Route::get('/pengumuman/{id}', [PengumumanController::class, 'show'])->name('admin.pengumuman.show');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/manajemen/{id}/edit', [ManajemenController::class, 'edit']) ->name('admin.manajemen.edit');
+    Route::put('/manajemen/{id}', [ManajemenController::class, 'update']) ->name('admin.manajemen.update');
+    Route::post('/manajemen', [ManajemenController::class, 'store']) ->name('admin.manajemen.store');
+    Route::put('/manajemen/{id}', [ManajemenController::class, 'update']) ->name('admin.manajemen.update');
+    Route::delete('/manajemen/{id}', [ManajemenController::class, 'destroy']) ->name('admin.manajemen.destroy');
+    Route::get('/manajemen/{id}/reset-password', [ManajemenController::class, 'resetForm']) ->name('admin.manajemen.reset.form');
+    Route::post('/manajemen/{id}/reset-password', [ManajemenController::class, 'resetPassword']) ->name('admin.manajemen.reset');
+    Route::get('/manajemen/{id}/reset-password', [ManajemenController::class, 'resetForm']) ->name('admin.manajemen.reset.form');
+    Route::post('/manajemen/{id}/reset-password', [ManajemenController::class, 'resetPassword']) ->name('admin.manajemen.reset');
+    Route::get('/manajemen/reset-password/success', [ManajemenController::class, 'resetSuccess']) ->name('admin.manajemen.reset.success');
+
 });
