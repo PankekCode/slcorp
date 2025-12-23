@@ -61,6 +61,6 @@ class PengumumanController extends Controller
     public function destroy($id)
     {
         Pengumuman::findOrFail($id)->delete();
-        return back()->with('success','Pengumuman dihapus');
+        return back()->with('success', 'Data berhasil dihapus');
     }
 }

@@ -251,7 +251,7 @@ use Illuminate\Support\Str;
         <ul>
             <li><a href="{{ route('admin.faq') }}">FAQ</a></li>
             <li>
-            <a href="{{ route('admin.profile') }}" class="nav-link">
+            <a href="{{ route('admin.profile.index') }}" class="nav-link">
                     <i class="bi bi-person"></i>
                     Profile
                 </a>

@@ -203,7 +203,7 @@
         <ul>
             <li><a href="#" class="active">FAQ</a></li>
             <li class="nav-item">
-                <a href="{{ route('admin.profile') }}" class="nav-link">
+                <a href="{{ route('admin.profile.index') }}" class="nav-link">
                     <i class="bi bi-person"></i>
                     Profile
                 </a>

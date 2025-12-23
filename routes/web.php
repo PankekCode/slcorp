@@ -5,7 +5,8 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\http\Controllers\ProfileController;
-use App\Http\Controllers\EditProfileController;
+use App\Http\Controllers\EditProfileController as UserEditProfileController;
+use App\Http\Controllers\Admin\EditProfileController as AdminEditProfileController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\PengumumanController;
@@ -53,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/lowongan', [UserLowonganController::class, 'index'])
         ->name('user.lowongan');
@@ -70,15 +73,15 @@ Route::get('/faq', function () {
 })->name('faq')->middleware('auth');
 
 Route::middleware('auth')->prefix('profile')->group(function () {
-    Route::get('/', [EditProfileController::class, 'index'])
+    Route::get('/', [UserEditProfileController::class, 'index'])
         ->name('user.profile');
 
-    Route::get('/edit', [EditProfileController::class, 'edit'])
+    Route::get('/edit', [UserEditProfileController::class, 'edit'])
         ->name('profile.edit');
 
-    Route::post('/update', [EditProfileController::class, 'update'])
+    Route::post('/update', [UserEditProfileController::class, 'update'])
         ->name('profile.update');
-    Route::post('/profile/photo', [EditProfileController::class, 'updatePhoto'])
+    Route::post('/profile/photo', [UserEditProfileController::class, 'updatePhoto'])
     ->name('profile.photo');
 })->name('user.profile');
 
@@ -144,22 +147,23 @@ Route::prefix('admin')->group(function () {
 
 });
 
-Route::middleware('auth')
-    ->prefix('admin/profile')
-    ->group(function () {
+Route::middleware('auth')->prefix('admin/profile')->group(function () {
 
-    Route::get('/', [EditProfileController::class, 'index'])
-        ->name('admin.profile');
+    Route::get('/', [AdminEditProfileController::class, 'index'])
+        ->name('admin.profile.index');
 
-    Route::get('/edit', [EditProfileController::class, 'edit'])
+    Route::get('/edit', [AdminEditProfileController::class, 'edit'])
         ->name('admin.profile.edit');
 
-    Route::post('/update', [EditProfileController::class, 'update'])
+    Route::post('/update', [AdminEditProfileController::class, 'update'])
         ->name('admin.profile.update');
 
-    Route::post('/photo', [EditProfileController::class, 'updatePhoto'])
+    Route::post('/photo', [AdminEditProfileController::class, 'updatePhoto'])
         ->name('admin.profile.photo');
 });
+
+
+
 
 
 

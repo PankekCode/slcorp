@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pengumuman</title>
+    <title>Admin Profile</title>
 
+    <!-- Bootstrap & Font -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -14,11 +15,11 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* SIDEBAR */
+        /* ================= SIDEBAR ================= */
         .sidebar {
             width: 260px;
             height: 100vh;
-            background: #FFFFFF;
+            background: #fff;
             position: fixed;
             left: 0;
             top: 0;
@@ -59,84 +60,62 @@
             margin-top: 250px;
         }
 
-        /* MAIN CONTENT */
+        /* ================= MAIN CONTENT ================= */
         .main-content {
             margin-left: 260px;
             padding: 30px;
         }
 
-        /* CARD PENGUMUMAN */
-        .announcement-card {
-            display: flex;
-            gap: 20px;
-            background: linear-gradient(135deg, #D32F2F, #8E1E1E);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 20px;
-            color: white;
-            position: relative;
-        }
-
-        .announcement-content h6,
-        .announcement-content p,
-        .announcement-content span {
-            color: white;
-        }
-
-        .announcement-content {
-            flex: 1;
-        }
-
-        .announcement-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .btn-edit,
-        .btn-hapus {
-            border: none;
-            padding: 6px 16px;
-            font-size: 12px;
-            border-radius: 20px;
-            cursor: pointer;
-        }
-
-        .btn-edit {
+        /* ================= PROFILE ================= */
+        .admin-profile-photo-card,
+        .admin-profile-data-card {
             background: #fff;
-            color: #B71C1C;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 6px 18px rgba(0,0,0,.06);
         }
 
-        .btn-hapus {
-            background: #7F0000;
-            color: #fff;
-        }
-
-        .btn-edit:hover {
-            background: #f1f1f1;
-        }
-
-        .btn-hapus:hover {
-            background: #5A0000;
-        }
-
-        /* FLOATING ADD */
-        .floating-add {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #D32F2F, #8E1E1E);
-            color: #fff;
-            font-size: 36px;
+        .admin-profile-avatar {
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.45);
-            z-index: 999;
+            object-fit: cover;
+            border: 4px solid #f1f1f1;
+            margin-bottom: 12px;
+        }
+
+        .admin-profile-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .admin-profile-role {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .admin-profile-photo-btn,
+        .admin-profile-edit-btn {
+            border-radius: 20px;
+            font-size: 14px;
+            padding: 8px 24px;
+        }
+
+        .admin-profile-data-card label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .admin-profile-data-card .form-control {
+            font-size: 14px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .admin-profile-data-card .form-control:disabled {
+            color: #333;
+            opacity: 1;
         }
     </style>
 </head>
@@ -157,6 +136,7 @@
         <ul>
             <li><a href="{{ route('admin.faq') }}">FAQ</a></li>
             <li><a href="#" class="active">Profile</a></li>
+            <li>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                     Log out
                 </a>
@@ -166,20 +146,20 @@
 </div>
 
 <!-- MAIN CONTENT -->
-<div class="container-fluid">
+<div class="main-content">
     <h4 class="mb-4">Profile</h4>
 
-    <div class="row">
+    <div class="row g-4">
         <!-- FOTO -->
         <div class="col-md-4">
-            <div class="card p-4 text-center">
-                <img src="{{ $admin->foto ? asset('storage/'.$admin->foto) : asset('assets/img/default.png') }}"
-                     class="rounded-circle mx-auto mb-3"
-                     width="140" height="140"
-                     style="object-fit:cover">
+            <div class="admin-profile-photo-card text-center">
+                <img
+                    src="{{ $admin->foto ? asset('storage/'.$admin->foto) : asset('assets/img/default.png') }}"
+                    class="admin-profile-avatar"
+                    alt="Foto Profile">
 
-                <h5 class="mb-0">{{ $profile->nama_lengkap }}</h5>
-                <small class="text-muted">Admin</small>
+                <div class="admin-profile-name">{{ $profile->nama_lengkap }}</div>
+                <div class="admin-profile-role">Admin</div>
 
                 <form action="{{ route('admin.profile.photo') }}"
                       method="POST"
@@ -187,7 +167,7 @@
                       class="mt-3">
                     @csrf
                     <input type="file" name="foto" class="form-control mb-2" required>
-                    <button class="btn btn-outline-dark btn-sm">
+                    <button class="btn btn-outline-dark btn-sm admin-profile-photo-btn w-100">
                         Ubah Foto Profile
                     </button>
                 </form>
@@ -196,14 +176,14 @@
 
         <!-- DATA -->
         <div class="col-md-8">
-            <div class="card p-4">
+            <div class="admin-profile-data-card">
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label class="form-label">Name</label>
+                        <label>Name</label>
                         <input type="text" class="form-control" value="{{ $admin->name }}" disabled>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Email Address</label>
+                        <label>Email Address</label>
                         <input type="text" class="form-control" value="{{ $admin->email }}" disabled>
                     </div>
                 </div>
@@ -215,10 +195,11 @@
 
                 <div class="mb-3">
                     <label>Address</label>
-                    <textarea class="form-control" disabled>{{ $profile->alamat }}</textarea>
+                    <textarea class="form-control" rows="3" disabled>{{ $profile->alamat }}</textarea>
                 </div>
 
-                <a href="{{ route('admin.profile.edit') }}" class="btn btn-dark">
+                <a href="{{ route('admin.profile.edit') }}"
+                   class="btn btn-dark admin-profile-edit-btn">
                     Edit Profile
                 </a>
             </div>
@@ -227,34 +208,24 @@
 </div>
 
 <!-- MODAL LOGOUT -->
-<div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4">
             <div class="modal-header border-0">
                 <h5 class="modal-title">Konfirmasi Logout</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
             <div class="modal-body">
                 <p>Apakah kamu yakin ingin keluar dari akun?</p>
             </div>
-
             <div class="modal-footer border-0">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Batal
-                </button>
-
-                <!-- TOMBOL LOGOUT -->
-                <a href="{{ route('welcome') }}" class="btn btn-danger">
-                    Ya, Logout
-                </a>
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <a href="{{ route('welcome') }}" class="btn btn-danger">Ya, Logout</a>
             </div>
         </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 </html>
-<!DOCTYPE html>
